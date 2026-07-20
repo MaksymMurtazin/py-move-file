@@ -3,11 +3,14 @@ import os
 
 def move_file(command: str) -> None:
     parts_of_command = command.split()
-    if len(parts_of_command) == 3:
-        existing_file_name = parts_of_command[1]
-        new_file_path = parts_of_command[2]
+
+    if len(parts_of_command) == 3 and parts_of_command[0] == "mv":
+        _, existing_file_name, new_file_path = parts_of_command
 
         if os.path.exists(existing_file_name):
+            if new_file_path[-1] == "/":
+                new_file_path = os.path.join(new_file_path, existing_file_name)
+
             if "/" in new_file_path:
                 parts_of_directory = new_file_path.split("/")[:-1]
 
