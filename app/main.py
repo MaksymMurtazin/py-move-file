@@ -15,7 +15,7 @@ def move_file(command: str) -> None:
                 parts_of_directory = new_file_path.split("/")[:-1]
 
                 for i in range(len(parts_of_directory)):
-                    dir_path = "/".join(parts_of_directory[:i + 1])
+                    dir_path = os.path.join(*parts_of_directory[:i + 1])
                     if not os.path.exists(dir_path):
                         os.mkdir(dir_path)
 
